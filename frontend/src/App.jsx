@@ -1,22 +1,69 @@
 import { useState } from "react";
 import "./App.css";
+import Login from "./components/Login";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState("home"); // "home", "login", "chat"
   const [username, setUsername] = useState("");
+  const [user, setUser] = useState(null);
 
   const handleJoinChat = () => {
     if (username.trim()) {
       // TODO: Navigate to chat room
       console.log(`Joining chat as: ${username}`);
+      setCurrentPage("chat");
     }
   };
 
+  const handleShowLogin = () => {
+    setCurrentPage("login");
+  };
+
+  const handleBackToHome = () => {
+    setCurrentPage("home");
+  };
+
+  const handleLogin = (userData) => {
+    setUser(userData);
+    setUsername(userData.username);
+    setCurrentPage("chat"); // For now, redirect to chat after login
+    console.log("User logged in:", userData);
+  };
+
+  // Render login page
+  if (currentPage === "login") {
+    return <Login onBack={handleBackToHome} onLogin={handleLogin} />;
+  }
+
+  // Render chat page (placeholder for now)
+  if (currentPage === "chat") {
+    return (
+      <div className="chat-container">
+        <div className="chat-header">
+          <h2>Welcome to ChatFlow, {user?.username || username}!</h2>
+          <button onClick={handleBackToHome} className="back-home-button">
+            ← Back to Home
+          </button>
+        </div>
+        <div className="chat-placeholder">
+          <p>Chat interface coming soon...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Render home page
   return (
     <div className="home-container">
       <header className="header">
-        <div className="logo-section">
-          <div className="logo-icon">💬</div>
-          <h1 className="app-title">ChatFlow</h1>
+        <div className="header-top">
+          <div className="logo-section">
+            <div className="logo-icon">💬</div>
+            <h1 className="app-title">ChatFlow</h1>
+          </div>
+          <button onClick={handleShowLogin} className="login-link">
+            Sign In
+          </button>
         </div>
         <p className="tagline">Connect instantly, chat seamlessly</p>
       </header>
@@ -48,6 +95,13 @@ function App() {
                 Join Chat
               </button>
             </div>
+            <p className="quick-join-note">
+              Or{" "}
+              <button onClick={handleShowLogin} className="inline-login-link">
+                sign in
+              </button>{" "}
+              for a personalized experience
+            </p>
           </div>
         </section>
 
