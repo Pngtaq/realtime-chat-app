@@ -96,7 +96,11 @@ function App() {
               </button>
             </div>
             <p className="quick-join-note">
-              Or <button onClick={handleShowLogin} className="inline-login-link">sign in</button> for a personalized experience
+              Or{" "}
+              <button onClick={handleShowLogin} className="inline-login-link">
+                sign in
+              </button>{" "}
+              for a personalized experience
             </p>
           </div>
         </section>
