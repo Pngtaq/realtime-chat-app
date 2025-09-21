@@ -313,24 +313,24 @@
   .app-title {
     font-size: 2rem;
   }
-  
+
   .hero-title {
     font-size: 2rem;
   }
-  
+
   .input-group {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .username-input {
     min-width: 300px;
   }
-  
+
   .features-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .logo-section {
     flex-direction: column;
     gap: 0.5rem;
@@ -347,7 +347,8 @@
     gap: 1rem;
     text-align: center;
   }
-}@media (max-width: 480px) {
+}
+@media (max-width: 480px) {
   .username-input {
     min-width: 250px;
   }
